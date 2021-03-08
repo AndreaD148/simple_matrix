@@ -88,17 +88,12 @@ Matrix Matrix::operator*(Matrix &other_matrix) {
 
   Matrix result(this->row_size, this->col_size, 0);
   //check if the dimension is the same
-  if(this->my_vector.size() != other_matrix.my_vector.size() 
-  || this->my_vector[0].size() != other_matrix.my_vector[0].size()) {
+  if(this->col_size != other_matrix.row_size) {
     return result;
   }
 
-  for(int i = 0; i < this->row_size; ++i) {
-    for(int j = 0; j < this->col_size; ++j) {
-      result.my_vector[i][j] = this->my_vector[i][j] * other_matrix.my_vector[i][j];
-    }
-  }
-
+  
+  
   return result;
 
 }
