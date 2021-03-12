@@ -6,8 +6,8 @@
 class Matrix {
 
 private:
-  unsigned row_size;
-  unsigned col_size;
+  int row_size;
+  int col_size;
   std::vector< std::vector<int> > my_vector;
 
 public:
@@ -25,10 +25,10 @@ public:
   
 
   //SCALAR OPERATIONS
-  Matrix operator+(double);
-  Matrix operator-(double);
+  // Matrix operator+(double);
+  // Matrix operator-(double);
   Matrix operator*(double);
-  Matrix operator/(double);
+  // Matrix operator/(double);
 
 
   void print() const;

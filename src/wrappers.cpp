@@ -12,7 +12,8 @@ PYBIND11_MODULE(first_test, m) {
   m.def("add", &add, "A function which add two numbers");
 
   pybind11::class_<Matrix>(m, "Matrix")
-    .def(pybind11::init<unsigned, unsigned>())
+    .def(pybind11::init<int, int>())
+    .def(pybind11::init<int, int, int>())
     .def("print", &Matrix::print); 
 
 }
