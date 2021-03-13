@@ -33,7 +33,7 @@ public:
   //SCALAR OPERATIONS
   // Matrix operator+(double);
   // Matrix operator-(double);
-  Matrix operator*(double);
+  Matrix operator*(int);
   // Matrix operator/(double);
 
 

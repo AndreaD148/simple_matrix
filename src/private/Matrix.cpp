@@ -175,7 +175,7 @@ void Matrix::define_values() {
 
 
 
-Matrix Matrix::operator*(double scalar) {
+Matrix Matrix::operator*(int scalar) {
 
   Matrix result(this->row_size, this->col_size, 0);
 
