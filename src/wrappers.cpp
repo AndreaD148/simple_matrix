@@ -21,8 +21,14 @@ PYBIND11_MODULE(first_test, m) {
     .def("__mul__", [](Matrix first, Matrix second) {
       return first * second;
     })
+    .def("__mul__", [](Matrix first, int scalar) {
+      return first * scalar;
+    })
     .def("__add__", [](Matrix first, Matrix second) {
       return first + second;
+    })
+    .def("__sub__", [](Matrix first, Matrix second) {
+      return first - second;
     });
 
 }
