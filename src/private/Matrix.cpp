@@ -65,11 +65,21 @@ void Matrix::print() const {
   }
 }
 
+void Matrix::define_values() {
+  for(int i = 0; i < this->row_size; ++i) {
+    for(int j = 0; j < this->col_size; ++j) {
+      std::cout << "Insert value for cell [" << i << "][" << j << "]: ";
+      std::cin >> this->my_vector[i][j];
+    }
+  }
+}
+
+
 //--------------------------------------
 //         MATRIX OPERATIONS
 //--------------------------------------
 
-Matrix Matrix::operator+(Matrix &other_matrix) {
+Matrix Matrix::operator+(Matrix &other_matrix) const {
 
   Matrix result(this->row_size, this->col_size, 0);
   //check if the dimension is the same
@@ -88,7 +98,7 @@ Matrix Matrix::operator+(Matrix &other_matrix) {
 
 }
 
-Matrix Matrix::operator-(Matrix &other_matrix) {
+Matrix Matrix::operator-(Matrix &other_matrix) const {
 
   Matrix result(this->row_size, this->col_size, 0);
   //check if the dimension is the same
@@ -107,7 +117,7 @@ Matrix Matrix::operator-(Matrix &other_matrix) {
 
 }
 
-Matrix Matrix::operator*(Matrix &other_matrix) {
+Matrix Matrix::operator*(Matrix &other_matrix) const {
 
   Matrix result(this->row_size, other_matrix.col_size, 0);
   int current_value = 0;
@@ -134,38 +144,7 @@ Matrix Matrix::operator*(Matrix &other_matrix) {
 
 }
 
-// Matrix Matrix::operator/(Matrix &other_matrix) {
 
-//   Matrix result(this->row_size, this->col_size, 0);
-//   //check if the dimension is the same
-//   if(this->my_vector.size() != other_matrix.my_vector.size() 
-//   || this->my_vector[0].size() != other_matrix.my_vector[0].size()) {
-//     return result;
-//   }
-
-//   for(int i = 0; i < this->row_size; ++i) {
-//     for(int j = 0; j < this->col_size; ++j) {
-//       if(other_matrix.my_vector[i][j] != 0) {
-//         result.my_vector[i][j] = this->my_vector[i][j] / other_matrix.my_vector[i][j];
-//       } else {
-//         return result;
-//       }
-//     }
-//   }
-
-//   return result;
-
-// }
-
-
-void Matrix::define_values() {
-  for(int i = 0; i < this->row_size; ++i) {
-    for(int j = 0; j < this->col_size; ++j) {
-      std::cout << "Insert value for cell [" << i << "][" << j << "]: ";
-      std::cin >> this->my_vector[i][j];
-    }
-  }
-}
 
 
 
@@ -175,7 +154,7 @@ void Matrix::define_values() {
 
 
 
-Matrix Matrix::operator*(int scalar) {
+Matrix Matrix::operator*(int scalar) const {
 
   Matrix result(this->row_size, this->col_size, 0);
 

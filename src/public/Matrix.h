@@ -19,9 +19,9 @@ public:
   void define_values();
   
   //TODO: define Matrix operations
-  Matrix operator+(Matrix &);
-  Matrix operator-(Matrix &);
-  Matrix operator*(Matrix &);
+  Matrix operator+(Matrix &) const;
+  Matrix operator-(Matrix &) const;
+  Matrix operator*(Matrix &) const;
   // Matrix operator/(Matrix &);
   Matrix transpose();
 
@@ -33,7 +33,7 @@ public:
   //SCALAR OPERATIONS
   // Matrix operator+(double);
   // Matrix operator-(double);
-  Matrix operator*(int);
+  Matrix operator*(int) const;
   // Matrix operator/(double);
 
 
