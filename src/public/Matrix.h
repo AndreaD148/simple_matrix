@@ -14,6 +14,7 @@ public:
 
   Matrix(int, int); //like zeros method of numpy
   Matrix(int, int, int);  //it takes the inizial values for each cells
+  Matrix(int, int, std::vector<int>);
   
   //TODO: define Matrix operations
   Matrix operator+(Matrix &);
@@ -21,6 +22,9 @@ public:
   Matrix operator*(Matrix &);
   Matrix operator/(Matrix &);
   Matrix transpose();
+
+  //OTHER DEFINITIONS
+  void define_values();
   
   
 

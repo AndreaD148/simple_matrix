@@ -11,23 +11,23 @@ int main() {
   int initial_value;
   int scalar;
 
-  do {
-    std::cout << "Insert how many rows: ";
-    std::cin >> rows;
-  }while(rows <= 0);
+  // do {
+  //   std::cout << "Insert how many rows: ";
+  //   std::cin >> rows;
+  // }while(rows <= 0);
   
-  do {
-    std::cout << "Insert how many cols: ";
-    std::cin >> cols;
-  }while(cols <= 0);
+  // do {
+  //   std::cout << "Insert how many cols: ";
+  //   std::cin >> cols;
+  // }while(cols <= 0);
 
-  std::cout << "Insert initial value for each cell: ";
-  std::cin >> initial_value;
+  // std::cout << "Insert initial value for each cell: ";
+  // std::cin >> initial_value;
 
-  Matrix m(rows, cols, initial_value);
+  // Matrix m(rows, cols, initial_value);
 
-  //print initial matrix
-  m.print();
+  // //print initial matrix
+  // m.print();
 
   //initialize scalar number
   // std::cout << "\nInsert a scalar number: ";
@@ -43,38 +43,95 @@ int main() {
   // scalar_mul.print();
 
   // SECOND MATRIX
-  do {
-    std::cout << "Insert rows for second matrix: ";
-    std::cin >> rows;
-  }while(rows <= 0);
+  // do {
+  //   std::cout << "Insert rows for second matrix: ";
+  //   std::cin >> rows;
+  // }while(rows <= 0);
   
-  do {
-    std::cout << "Insert columns for second matrix: ";
-    std::cin >> cols;
-  }while(rows <= 0);
+  // do {
+  //   std::cout << "Insert columns for second matrix: ";
+  //   std::cin >> cols;
+  // }while(rows <= 0);
 
-  std::cout << "Insert the value for each cell: ";
-  std::cin >> initial_value;
+  // std::cout << "Insert the value for each cell: ";
+  // std::cin >> initial_value;
 
-  Matrix second_matrix(rows, cols, initial_value);
+  // Matrix second_matrix(rows, cols, initial_value);
 
-  std::cout << "Second matrix:" << std::endl;
-  //print of the second matrix
-  second_matrix.print();
+  // std::cout << "Second matrix:" << std::endl;
+  // //print of the second matrix
+  // second_matrix.print();
 
-  // TEST OPERATIONS BETWEEN TWO MATRIX
-  // - test sum of tow matrix
-  Matrix matrix_sum = m + second_matrix;
+  // // TEST OPERATIONS BETWEEN TWO MATRIX
+  // // - test sum of tow matrix
+  // Matrix matrix_sum = m + second_matrix;
   
-  // - test diff between two matrix
-  Matrix matrix_diff = m - second_matrix;
+  // // - test diff between two matrix
+  // Matrix matrix_diff = m - second_matrix;
 
-  std::cout << "Matrix sum:\n";
-  matrix_sum.print();
+  // std::cout << "Matrix sum:\n";
+  // matrix_sum.print();
 
-  std::cout << "\n\nMatrix diff:\n";
-  matrix_diff.print();
+  // std::cout << "\n\nMatrix diff:\n";
+  // matrix_diff.print();
 
+  //test creation with different values
+  
+  // Matrix m1{2, 3};
+  // m1.define_values();
+
+  // m1.print();
+
+  // Matrix m2{3, 2};
+  // m2.define_values();
+  // m2.print();
+
+  // Matrix res = m1 * m2;
+
+  // std::cout << "prodotto: \n";
+
+  // res.print();
+
+  std::vector<int> v(4);
+  v = {1, 0, 0, 0};
+  
+  std::vector<int> v2(4);
+  v2 = {0, 1, 0, 1};
+
+  Matrix first{2, 2, v};
+  
+  std::cout << "First matrix:\n";
+  first.print();
+
+  Matrix second{2, 2, v2};
+
+  std::cout << "\nSecond matrix:\n";
+  second.print();
+
+  Matrix prod = first * second;
+
+  std::cout << "\nm1 * m2 = \n";
+  prod.print();
+
+  //SECOND TEST
+  std::vector<int> v_a(6);
+  v_a = {1, 2, 0, 0, 2, 3};
+
+  std::vector<int> v_b(6);
+  v_b = {2, 3, 4, 1, 0, 2};
+
+  Matrix a{2, 3, v_a};
+  std::cout << "\nA:\n";
+  a.print();
+  Matrix b{3, 2, v_b};
+
+  std::cout << "\nB: \n";
+  b.print();
+
+  Matrix sec_prod = a * b;
+
+  std::cout << "\nA * B:\n";
+  sec_prod.print();
 
   // std::cout << "Hello World";
 
