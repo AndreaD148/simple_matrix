@@ -133,6 +133,18 @@ int main() {
   std::cout << "\nA * B:\n";
   sec_prod.print();
 
+  //TEST TRASPOSE OPERATION
+  std::vector<int> v_transpose(4);
+  v_transpose = {1, 2, 3, 4};
+  Matrix m_to_transpose{2, 2, v_transpose};
+
+  std::cout << "Matrix before transposition: \n";
+  m_to_transpose.print();
+
+  Matrix transpose_matrix = m_to_transpose.transpose();
+
+  std::cout << "\nMatrix after transposition:\n";
+  transpose_matrix.print();
   // std::cout << "Hello World";
 
 }

@@ -144,6 +144,21 @@ Matrix Matrix::operator*(Matrix &other_matrix) const {
 
 }
 
+Matrix Matrix::transpose() {
+
+  //rows changed with columns
+  Matrix result{this->col_size, this->row_size, 0};
+
+  for(int i = 0; i < this->row_size; ++i) {
+    for(int j = 0; j < this->col_size; ++j) {
+      //first row = initial first column
+      result.my_vector[j][i] = this->my_vector[i][j];
+    }
+  }
+
+  return result;
+
+}
 
 
 
