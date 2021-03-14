@@ -83,9 +83,8 @@ Matrix Matrix::operator+(Matrix &other_matrix) const {
 
   Matrix result(this->row_size, this->col_size, 0);
   //check if the dimension is the same
-  if(this->my_vector.size() != other_matrix.my_vector.size() 
-  || this->my_vector[0].size() != other_matrix.my_vector[0].size()) {
-    return result;
+  if(this->row_size != other_matrix.row_size || this->col_size != other_matrix.col_size) {
+    throw std::invalid_argument("Error! Different dimensions");
   }
 
   for(int i = 0; i < this->row_size; ++i) {
@@ -102,9 +101,8 @@ Matrix Matrix::operator-(Matrix &other_matrix) const {
 
   Matrix result(this->row_size, this->col_size, 0);
   //check if the dimension is the same
-  if(this->my_vector.size() != other_matrix.my_vector.size() 
-  || this->my_vector[0].size() != other_matrix.my_vector[0].size()) {
-    return result;
+  if(this->row_size != other_matrix.row_size || this->col_size != other_matrix.col_size) {
+    throw std::invalid_argument("Error! Different dimensions");
   }
 
   for(int i = 0; i < this->row_size; ++i) {
@@ -126,8 +124,7 @@ Matrix Matrix::operator*(Matrix &other_matrix) const {
 
   //check if the dimension is the same
   if(this->col_size != other_matrix.row_size) {
-    std::cout << "Error!";
-    return result;
+    throw std::invalid_argument("Error! Different dimensions!");
   }
 
   //this->my_vector[row_counter][col_counter] * other_matrix.my_vector[col_counter][row_counter]; (questo è giusto)
