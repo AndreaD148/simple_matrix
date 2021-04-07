@@ -3,10 +3,13 @@
 //--------------------------------------
 //         CONSTRUCTOR
 //--------------------------------------
+
+//base constructor (just row_size and col_size)
 Matrix::Matrix(int  row_size, int  col_size) {
 
   this-> row_size =  row_size;
   this-> col_size =  col_size;
+  this->determinant = 0;
 
   //initialize our vector
   this->my_vector.resize(row_size);
@@ -21,6 +24,7 @@ Matrix::Matrix(int row_size, int col_size, int initial_value) {
 
   this->row_size = row_size;
   this->col_size = col_size;
+  this->determinant = 0;
 
   this->my_vector.resize(row_size);
 
@@ -34,6 +38,7 @@ Matrix::Matrix(int row_size, int col_size, int initial_value) {
 Matrix::Matrix(int row_size, int col_size, std::vector<int> initial_values) {
   this->row_size = row_size;
   this->col_size = col_size;
+  this->determinant = 0;
 
   int vector_counter = 0;
 
@@ -180,7 +185,66 @@ Matrix Matrix::operator*(int scalar) const {
 
 }
 
+void Matrix::two_by_two_determinant() {
+
+  if(this->row_size == 2 && this->col_size == 2) {
+    this->determinant = (this->my_vector[0][0] * this->my_vector[1][1]) - (this->my_vector[1][0] * this->my_vector[0][1]);
+  } else {
+    throw std::invalid_argument("Error! This is not a 2 * 2 Matrix");
+  }
+
+}
+
+int Matrix::get_determinant() {
+  return this->determinant;
+}
+
+void Matrix::sarrus() {
+  
+
+  int partial_res = 1;
+  int to_sub_res = 1; //to __mul__ three value
+  int second_partial_res = 0;
+  int total_res = 0;
+  int i = 0, j = 0;
+  if(this->row_size == 3 && this->col_size == 3) {
+    
+    Matrix partial_matrix{3, 5};
+
+    //load 3x3 matrix in partial_matrix (5x5 matrix)
+    for(int i = 0; i < this->row_size; ++i) {
+      for(int j = 0; j < this->col_size; ++j) {
+        partial_matrix.my_vector[i][j] = this->my_vector[i][j];
+      }
+    }
+
+    partial_matrix.my_vector[0][3] = this->my_vector[0][0];
+    partial_matrix.my_vector[0][4] = this->my_vector[0][1];
+    
+    partial_matrix.my_vector[1][3] = this->my_vector[1][0];
+    partial_matrix.my_vector[1][4] = this->my_vector[1][1];
+    
+    partial_matrix.my_vector[2][3] = this->my_vector[2][0];
+    partial_matrix.my_vector[2][4] = this->my_vector[2][1];
+
+    //print for test
+    // partial_matrix.print();
+
+    //principal diagonal
+    // 
+    total_res = ((this->my_vector[0][0] * this->my_vector[1][1] * this->my_vector[2][2])
+    + (this->my_vector[0][1] * this->my_vector[1][2] * this->my_vector[2][3])
+    + (this->my_vector[0][2] * this->my_vector[1][3] * this->my_vector[2][4])
+    - ( (this->my_vector[2][0] * this->my_vector[1][1] * this->my_vector[0][2])
+    + (this->my_vector[2][1] * this->my_vector[1][2] * this->my_vector[0][3]) 
+    + (this->my_vector[2][2] * this->my_vector[1][3] * this->my_vector[0][4])));
+    this->determinant = total_res;
 
 
+  } else {
+    throw std::invalid_argument("Error! This is not a 3 * 3 Matrix");
+  }
+
+}
 
 

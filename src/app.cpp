@@ -145,6 +145,40 @@ int main() {
 
   std::cout << "\nMatrix after transposition:\n";
   transpose_matrix.print();
+  std::cout << "\n";
   // std::cout << "Hello World";
+
+  //TEST DETERMINANT
+  std::vector<int> v_determinant(4);
+  v_determinant = {1, 2, 3, 3};
+
+  Matrix m_determinant{2, 2, v_determinant};
+
+  m_determinant.print();
+
+  //get initial value of determinant
+  std::cout << "\nInitial value of determinant: " << m_determinant.get_determinant() << std::endl;
+
+  m_determinant.two_by_two_determinant();
+
+  std::cout << "Determinant after determinant calculation: " << m_determinant.get_determinant() << "\n";
+
+  // m_determinant.two_by_two_determinant();
+  // std::cout << "\ndeterminant of the last matrix is: " << m_determinant.get_determinant();
+
+  //TEST SARRUS
+  std::vector<int> v_sarrus(9);
+  v_sarrus = {1, 0, 0, 0, 1, 0, 0, 0, 1};
+
+  Matrix m_sarrus{3, 3, v_sarrus};
+  
+  std::cout << "Matrix 3*3: \n";
+  m_sarrus.print();
+
+  std::cout << "\nSarrus: \n";
+  m_sarrus.sarrus();
+
+  std::cout << "\nNow the determinant is: " << m_sarrus.get_determinant();
+
 
 }

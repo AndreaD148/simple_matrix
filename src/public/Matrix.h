@@ -9,6 +9,7 @@ private:
   int row_size;
   int col_size;
   std::vector< std::vector<int> > my_vector;
+  int determinant;
 
 public:
 
@@ -25,9 +26,10 @@ public:
   // Matrix operator/(Matrix &);
   Matrix transpose();
 
-  //OTHER DEFINITIONS
-  
-  
+  //OTHER OPERATIONS
+  void two_by_two_determinant();
+  int get_determinant();
+  void sarrus();
   
 
   //SCALAR OPERATIONS

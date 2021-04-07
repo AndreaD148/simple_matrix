@@ -19,6 +19,8 @@ PYBIND11_MODULE(first_test, m) {
     .def(pybind11::init< int, int, std::vector<int> >())
     .def("print", &Matrix::print)
     .def("transpose", &Matrix::transpose)
+    .def("two_by_two_determinant", &Matrix::two_by_two_determinant)
+    .def("get_determinant", &Matrix::get_determinant)
     .def("__mul__", [](Matrix first, Matrix second) {
       return first * second;
     })
