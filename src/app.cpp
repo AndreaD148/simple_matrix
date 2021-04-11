@@ -178,7 +178,16 @@ int main() {
   std::cout << "\nSarrus: \n";
   m_sarrus.sarrus();
 
-  std::cout << "\nNow the determinant is: " << m_sarrus.get_determinant();
+  std::cout << "\nNow the determinant is: " << m_sarrus.get_determinant() << std::endl;
+
+  //----------------------------------------------------------------------//
+  //TEST FOR LAPLACE METHOD
+  std::vector<int> v_la_place(16);
+  v_la_place = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0, 0, 1, 0};
+
+  Matrix m_la_place{4, 4, v_la_place};
+
+  m_la_place.la_place(2, 1);
 
 
 }

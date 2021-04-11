@@ -20,6 +20,7 @@ PYBIND11_MODULE(first_test, m) {
     .def("print", &Matrix::print)
     .def("transpose", &Matrix::transpose)
     .def("two_by_two_determinant", &Matrix::two_by_two_determinant)
+    .def("sarrus", &Matrix::sarrus)
     .def("get_determinant", &Matrix::get_determinant)
     .def("__mul__", [](Matrix first, Matrix second) {
       return first * second;

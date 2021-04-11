@@ -25,11 +25,16 @@ public:
   Matrix operator*(Matrix &) const;
   // Matrix operator/(Matrix &);
   Matrix transpose();
+  
+  
 
   //OTHER OPERATIONS
   void two_by_two_determinant();
   int get_determinant();
   void sarrus();
+  void la_place(int, int);
+  Matrix create_sub_matrix(int, int);
+  
   
 
   //SCALAR OPERATIONS

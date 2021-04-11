@@ -185,6 +185,10 @@ Matrix Matrix::operator*(int scalar) const {
 
 }
 
+//--------------------------------------
+//            OTHER METHODS
+//--------------------------------------
+
 void Matrix::two_by_two_determinant() {
 
   if(this->row_size == 2 && this->col_size == 2) {
@@ -244,6 +248,75 @@ void Matrix::sarrus() {
   } else {
     throw std::invalid_argument("Error! This is not a 3 * 3 Matrix");
   }
+
+}
+
+/*
+ * NAME: create_sub_matrix
+ */
+Matrix Matrix::create_sub_matrix(int selected_row, int selected_col) {
+  Matrix sub_matrix{this->row_size-1, this->col_size-1, 0};
+  // int i = 0, j = 0;
+  // std::vector<int> values(sub_matrix.row_size * sub_matrix.col_size);
+
+  int index = 0;
+
+  for(int current_row = 0; current_row < this->row_size; ++current_row) {
+    for(int current_col = 0; current_col < this->col_size; ++current_col) {
+      if(current_row != selected_row && current_col != selected_col) {
+        sub_matrix.my_vector[index / sub_matrix.row_size][index % sub_matrix.col_size] 
+        = this->my_vector[current_row][current_col];
+        ++index;
+      }
+    }
+  }
+  
+  return sub_matrix;
+
+}
+
+//TODO: to finish implementation, now I've found the row where I can do laplace
+void Matrix::la_place(int selected_row, int selected_col) {
+
+  Matrix sub_matrix = this->create_sub_matrix(selected_row, selected_col);
+  int zeros_on_row[this->row_size];
+  // int zeros_on_col[this->col_size];
+
+  for(int i = 0; i < this->row_size; ++i) {
+    zeros_on_row[i] = 0;
+  }
+
+  int max_zeros_row = zeros_on_row[0];
+
+  //per fare laplace devo prima controllare su quale riga è meglio fare LaPlace
+
+  //scanning matrix to see where we can do easly laplace
+
+  for(int i = 0; i < this->row_size; ++i) {
+    for(int j = 0; j < this->col_size;++j) {
+      if(this->my_vector[i][j] == 0) {
+        zeros_on_row[i]++;
+      }
+    }
+  }
+
+  //print zeros_on_row just for test
+  for(int i = 0; i < this->row_size; ++i) {
+    std::cout << zeros_on_row[i] << "\t";
+  }
+  
+
+  // for(int i = 1; i < this->row_size; ++i) {
+  //   //check the row which has more zeros
+  //   if(max_zeros_row < )
+  // }
+  
+
+  //print for test
+  std::cout << "\nsubmatrix: \n";
+  sub_matrix.print();
+
+
 
 }
 
