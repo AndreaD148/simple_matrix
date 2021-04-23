@@ -157,9 +157,9 @@ int main() {
   m_determinant.print();
 
   //get initial value of determinant
-  std::cout << "\nInitial value of determinant: " << m_determinant.get_determinant() << std::endl;
+  // std::cout << "\nInitial value of determinant: " << m_determinant.get_determinant() << std::endl;
 
-  m_determinant.two_by_two_determinant();
+  // m_determinant.two_by_two_determinant();
 
   std::cout << "Determinant after determinant calculation: " << m_determinant.get_determinant() << "\n";
 
@@ -176,18 +176,24 @@ int main() {
   m_sarrus.print();
 
   std::cout << "\nSarrus: \n";
-  m_sarrus.sarrus();
+  // m_sarrus.sarrus();
 
-  std::cout << "\nNow the determinant is: " << m_sarrus.get_determinant() << std::endl;
+  // std::cout << "\nNow the determinant is: " << m_sarrus.get_determinant() << std::endl;
 
   //----------------------------------------------------------------------//
   //TEST FOR LAPLACE METHOD
   std::vector<int> v_la_place(16);
-  v_la_place = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0, 0, 1, 0};
+  // v_la_place = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0, 0, 1, 0};
+  v_la_place = {1, 2, 3, 4, 1, 0 , 5, 1, 3, 0 ,0, 2, 0, 0, 0, 1};
 
   Matrix m_la_place{4, 4, v_la_place};
 
-  m_la_place.la_place(2, 1);
+  //print for testing
+  m_la_place.print();
+
+  // m_la_place.la_place(2, 1);
+
+  std::cout << "\nThe determinant of this matrix is: " << m_la_place.get_determinant();
 
 
 }

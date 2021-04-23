@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 class Matrix {
 
@@ -10,6 +11,8 @@ private:
   int col_size;
   std::vector< std::vector<int> > my_vector;
   int determinant;
+
+  
 
 public:
 
@@ -29,11 +32,12 @@ public:
   
 
   //OTHER OPERATIONS
-  void two_by_two_determinant();
   int get_determinant();
-  void sarrus();
-  void la_place(int, int);
   Matrix create_sub_matrix(int, int);
+  void two_by_two_determinant();
+  void sarrus();
+  void la_place();
+  
   
   
 

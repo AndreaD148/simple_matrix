@@ -191,15 +191,41 @@ Matrix Matrix::operator*(int scalar) const {
 
 void Matrix::two_by_two_determinant() {
 
+  int res = 0;
+
   if(this->row_size == 2 && this->col_size == 2) {
-    this->determinant = (this->my_vector[0][0] * this->my_vector[1][1]) - (this->my_vector[1][0] * this->my_vector[0][1]);
+    res += (this->my_vector[0][0] * this->my_vector[1][1]) - (this->my_vector[1][0] * this->my_vector[0][1]);
   } else {
     throw std::invalid_argument("Error! This is not a 2 * 2 Matrix");
   }
 
+  this->determinant = res;
+
+  // return this->determinant;
+
 }
 
+//TODO: call a specific method (depends on the size of the matrix)
 int Matrix::get_determinant() {
+
+  if(this->row_size != this->col_size) {
+    throw std::invalid_argument("Error! Not nxn matrix");
+  }
+
+  //check the dimension
+  // if(this->row_size >=)
+  if(this->row_size >= 4) {
+    // std::cout << this->la_place() << "\n";
+    this->la_place();
+    std::cout << "\nDeterminant after laplace = " << this->determinant;
+  } else if(this->row_size == 3) {
+    this->sarrus();
+    std::cout << "\nDeterminant after sarruss = " << this->determinant;
+  } else if(this->row_size == 2) {
+    this->two_by_two_determinant();
+    std::cout << "\nDeterminant after two by two determinant = " << this->determinant;
+  }
+
   return this->determinant;
 }
 
@@ -211,6 +237,10 @@ void Matrix::sarrus() {
   int second_partial_res = 0;
   int total_res = 0;
   int i = 0, j = 0;
+
+  //print initial value of determinant to see what is going on
+  std::cout << "\nDeterminant before sarrus: " << this->determinant << "\n";
+
   if(this->row_size == 3 && this->col_size == 3) {
     
     Matrix partial_matrix{3, 5};
@@ -242,7 +272,14 @@ void Matrix::sarrus() {
     - ( (this->my_vector[2][0] * this->my_vector[1][1] * this->my_vector[0][2])
     + (this->my_vector[2][1] * this->my_vector[1][2] * this->my_vector[0][3]) 
     + (this->my_vector[2][2] * this->my_vector[1][3] * this->my_vector[0][4])));
-    this->determinant = total_res;
+
+    std::cout << "Total res: " << total_res << "\n";
+
+    this->determinant += total_res;
+
+    std::cout << "\nDeterminant after sarruss: " << this->determinant;
+    // return this->determinant;
+    
 
 
   } else {
@@ -276,9 +313,12 @@ Matrix Matrix::create_sub_matrix(int selected_row, int selected_col) {
 }
 
 //TODO: to finish implementation, now I've found the row where I can do laplace
-void Matrix::la_place(int selected_row, int selected_col) {
+void Matrix::la_place() {
 
-  Matrix sub_matrix = this->create_sub_matrix(selected_row, selected_col);
+  //print initial determinant
+  std::cout << "Initial value of determinant: " << this->determinant << "\n";
+
+  // Matrix sub_matrix{};
   int zeros_on_row[this->row_size];
   // int zeros_on_col[this->col_size];
 
@@ -287,6 +327,8 @@ void Matrix::la_place(int selected_row, int selected_col) {
   }
 
   int max_zeros_row = zeros_on_row[0];
+  int res = 0;
+  int row_with_more_zero;
 
   //per fare laplace devo prima controllare su quale riga è meglio fare LaPlace
 
@@ -301,22 +343,48 @@ void Matrix::la_place(int selected_row, int selected_col) {
   }
 
   //print zeros_on_row just for test
+  std::cout << "zeros on the rows: \n";
   for(int i = 0; i < this->row_size; ++i) {
     std::cout << zeros_on_row[i] << "\t";
   }
   
+  std::cout << "\n";
 
-  // for(int i = 1; i < this->row_size; ++i) {
-  //   //check the row which has more zeros
-  //   if(max_zeros_row < )
-  // }
+  //cicle to zeros_on_row to get the max value
+  row_with_more_zero = zeros_on_row[0];
+
+  for(int i = 1; i < this->row_size; ++i) {
+    if(zeros_on_row[i] > row_with_more_zero) {
+      row_with_more_zero = i; //I should save only the position (row index)
+    }
+  }
+
+  // std::cout << "row with more zero is: " << row_with_more_zero << "\n";
+
+  
+
+  for(int col = 0; col < this->col_size; ++col) {
+    if(this->my_vector[row_with_more_zero][col] != 0) {
+      Matrix sub_matrix = this->create_sub_matrix(row_with_more_zero, col);
+      //print submatrix for test
+      std::cout << "sub_matrix: \n";
+      sub_matrix.print();
+      res += pow(-1, (row_with_more_zero+1 + col+1)) * 
+      this->my_vector[row_with_more_zero][col] * sub_matrix.get_determinant();
+    }
+  }
   
 
   //print for test
-  std::cout << "\nsubmatrix: \n";
-  sub_matrix.print();
+  // std::cout << "\nsubmatrix: \n";
+  // sub_matrix.print();
 
+  //print the result
+  std::cout << "\nres: = " << res << "\n";
 
+  this->determinant += res;
+
+  // return this->determinant;
 
 }
 
